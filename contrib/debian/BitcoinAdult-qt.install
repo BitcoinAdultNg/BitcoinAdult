@@ -1,0 +1,6 @@
+usr/local/bin/BitcoinAdult-qt usr/bin
+share/pixmaps/BitcoinAdult32.xpm usr/share/pixmaps
+share/pixmaps/BitcoinAdult16.xpm usr/share/pixmaps
+share/pixmaps/BitcoinAdult128.png usr/share/pixmaps
+debian/BitcoinAdult-qt.desktop usr/share/applications
+debian/BitcoinAdult-qt.protocol usr/share/kde4/services/

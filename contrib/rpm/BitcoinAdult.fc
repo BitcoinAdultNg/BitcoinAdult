@@ -1,0 +1,8 @@
+/usr/bin/BitcoinAdult-cli		--	gen_context(system_u:object_r:BITCOINADULT_exec_t,s0)
+/usr/sbin/BitcoinAdultd		--	gen_context(system_u:object_r:BITCOINADULT_exec_t,s0)
+/usr/lib(64)?/BITCOINADULT/BitcoinAdultd		--	gen_context(system_u:object_r:BITCOINADULT_exec_t,s0)
+
+/etc/BITCOINADULT(/.*)?		gen_context(system_u:object_r:BITCOINADULT_conf_t,s0)
+/var/lib/BITCOINADULT(/.*)?		gen_context(system_u:object_r:BITCOINADULT_var_lib_t,s0)
+
+(/var)?/run/BitcoinAdultd(/.*)?   gen_context(system_u:object_r:BITCOINADULT_var_run_t,s0)

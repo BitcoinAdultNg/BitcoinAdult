@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="-624 741 750 520" style="enable-background:new -624 741 750 520;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill:none;stroke:#B088FF;}
+</style>
+<g id="pinky">
+	<g id="bg_1_" transform="translate(-225 -140)">
+		<g id="Rectangle_4754_1_" transform="translate(225 140)">
+			
+				<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-3738.8435" y1="1999.5901" x2="-3739.8293" y2="2000.576" gradientTransform="matrix(750 0 0 -520 2804256 1041046)">
+				<stop  offset="0" style="stop-color:#280F11"/>
+				<stop  offset="1" style="stop-color:#441B3C"/>
+			</linearGradient>
+			<path class="st0" d="M-620,741h742c2.2,0,4,1.8,4,4v512c0,2.2-1.8,4-4,4h-742c-2.2,0-4-1.8-4-4V745C-624,742.8-622.2,741-620,741
+				z"/>
+			<path class="st1" d="M-620,741.5h742c1.9,0,3.5,1.6,3.5,3.5v512c0,1.9-1.6,3.5-3.5,3.5h-742c-1.9,0-3.5-1.6-3.5-3.5V745
+				C-623.5,743.1-621.9,741.5-620,741.5z"/>
+		</g>
+	</g>
+</g>
+</svg>

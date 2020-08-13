@@ -1,0 +1,3 @@
+usr/local/bin/BitcoinAdultd usr/bin
+usr/local/bin/BitcoinAdult-cli usr/bin
+debian/examples/BitcoinAdult.conf etc/BitcoinAdult

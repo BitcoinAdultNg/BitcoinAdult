@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Name=BITCOINADULT Core
+Comment=BITCOINADULT P2P Cryptocurrency
+Exec=BitcoinAdult-qt %u
+Terminal=false
+Type=Application
+Icon=BitcoinAdult128
+MimeType=x-scheme-handler/BitcoinAdult;
+Categories=Office;Finance;
+StartupWMClass=BitcoinAdult-qt
+Name[de_DE]=BitcoinAdult-qt.desktop
