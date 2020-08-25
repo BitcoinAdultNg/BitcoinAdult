@@ -62,7 +62,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 QPushButton[cssClass="img-nav-logo"] {
     qproperty-icon: url("://img-nav-logo");
-    qproperty-iconSize: 49px 60px;
+    qproperty-iconSize: 80px 80px;
 }
 
 *[cssClass="btn-nav-receive"] {
@@ -1715,7 +1715,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="img-splash-logo"] {
-    qproperty-icon: url("://img-logo-BitcoinAdult");
+    qproperty-icon: url("://img-logo-BitcoinAdult-png");
     qproperty-iconSize: 300px 100px;
     border:0;
     background-color:transparent;
@@ -1770,14 +1770,14 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     font-size:20px;
 }
 
-*[cssClass="text-stake-BTAD"] {
+*[cssClass="text-stake-piv"] {
     color:#5c4b7d;
     font-size:16px;
     padding:10px;
     border-bottom: 5px solid #5c4b7d;
 }
 
-*[cssClass="text-stake-BTAD-disable"] {
+*[cssClass="text-stake-piv-disable"] {
     color:#69656F;
     font-size:16px;
     padding:10px;
@@ -1809,7 +1809,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     padding-left:4px;
 }
 
-*[cssClass="text-chart-BTAD"] {
+*[cssClass="text-chart-piv"] {
     color:#5c4b7d;
     font-size:16px;
     padding-left:4px;
@@ -1820,7 +1820,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     border:none;
 }
 
-*[cssClass="square-chart-BTAD"] {
+*[cssClass="square-chart-piv"] {
     background-color:#5c4b7d;
     border:none;
 }
