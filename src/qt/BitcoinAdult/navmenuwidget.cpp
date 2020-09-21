@@ -39,6 +39,7 @@ NavMenuWidget::NavMenuWidget(BITCOINADULTGUI *mainWindow, QWidget *parent) :
     ui->btnPrivacy->setProperty("name", "privacy");
     ui->btnPrivacy->setText("PRIVACY\n");
     ui->btnPrivacy->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    ui->btnPrivacy->setVisible(false);
 
     ui->btnMaster->setProperty("name", "master");
     ui->btnMaster->setText("MASTER\r\nNODES");
@@ -47,6 +48,7 @@ NavMenuWidget::NavMenuWidget(BITCOINADULTGUI *mainWindow, QWidget *parent) :
     ui->btnColdStaking->setProperty("name", "cold-staking");
     ui->btnColdStaking->setText("COLD\r\nSTAKING");
     ui->btnColdStaking->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    ui->btnColdStaking->setVisible(false);
 
     ui->btnSettings->setProperty("name", "settings");
     ui->btnSettings->setText("SETTINGS\n");
@@ -56,6 +58,7 @@ NavMenuWidget::NavMenuWidget(BITCOINADULTGUI *mainWindow, QWidget *parent) :
     ui->btnReceive->setText("RECEIVE\n");
     ui->btnReceive->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
+
     btns = {ui->btnDashboard, ui->btnSend, ui->btnReceive, ui->btnAddress, ui->btnPrivacy, ui->btnMaster, ui->btnColdStaking, ui->btnSettings, ui->btnColdStaking};
     onNavSelected(ui->btnDashboard, true);
 
@@ -63,7 +66,8 @@ NavMenuWidget::NavMenuWidget(BITCOINADULTGUI *mainWindow, QWidget *parent) :
 }
 
 void NavMenuWidget::loadWalletModel() {
-    if (walletModel && walletModel->getOptionsModel()) {
+
+     if (walletModel && walletModel->getOptionsModel()) {
         ui->btnColdStaking->setVisible(walletModel->getOptionsModel()->isColdStakingScreenEnabled());
     }
 }
@@ -85,9 +89,9 @@ void NavMenuWidget::connectActions() {
     ui->btnSend->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_2));
     ui->btnReceive->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_3));
     ui->btnAddress->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_4));
-    ui->btnPrivacy->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_5));
+    //ui->btnPrivacy->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_5));
     ui->btnMaster->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_6));
-    ui->btnColdStaking->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_7));
+    //ui->btnColdStaking->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_7));
     ui->btnSettings->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_8));
 }
 
@@ -154,6 +158,7 @@ void NavMenuWidget::onShowHideColdStakingChanged(bool show) {
 }
 
 void NavMenuWidget::updateButtonStyles(){
+
     forceUpdateStyle({
          ui->btnDashboard,
          ui->btnSend,

@@ -437,7 +437,7 @@ RES_ICONS = \
   qt/BitcoinAdult/res/img/ic-radio-liliac-on.svg \
   qt/BitcoinAdult/res/img/img-empty-staking-off.svg \
   qt/BitcoinAdult/res/img/ic-arrow-drop-down.svg \
-  qt/BitcoinAdult/res/img/ic-coin-piv.svg \
+  qt/BitcoinAdult/res/img/ic-coin-btad.svg \
   qt/BitcoinAdult/res/img/ic-receive-off.svg \
   qt/BitcoinAdult/res/img/img-empty-staking-on.svg \
   qt/BitcoinAdult/res/img/ic-arrow-drop-up-white.svg \

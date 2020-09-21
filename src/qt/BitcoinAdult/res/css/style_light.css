@@ -2405,12 +2405,12 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 
 *[cssClass="coin-icon-piv"] {
-    qproperty-icon: url("://ic-coin-piv") off,
-    url("://ic-coin-piv") on ;
-    qproperty-iconSize: 24px 24px;
+    qproperty-icon: url("://ic-coin-btad") off,
+    url("://ic-coin-btad") on ;
+    qproperty-iconSize: 30px 30px;
     background-color: #FFFFFF;
-    border:  2px solid #FFFFFF;
-    border-radius: 12px;
+    border:  1px solid #FFFFFF;
+    border-radius: 10px;
 }
 
 *[cssClass="coin-icon-zpiv"] {

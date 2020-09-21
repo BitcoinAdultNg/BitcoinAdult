@@ -2401,13 +2401,13 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 
-*[cssClass="coin-icon-BTAD"] {
-    qproperty-icon: url("://ic-coin-BTAD") off,
-    url("://ic-coin-BTAD") on ;
-    qproperty-iconSize: 24px 24px;
+*[cssClass="coin-icon-piv"] {
+    qproperty-icon: url("://ic-coin-btad") off,
+    url("://ic-coin-btad") on ;
+    qproperty-iconSize: 30px 30px;
     background-color: #FFFFFF;
-    border:  2px solid #0f0b16;
-    border-radius: 12px;
+    border:  1px solid #0f0b16;
+    border-radius: 10px;
 }
 
 *[cssClass="coin-icon-zpiv"] {

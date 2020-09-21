@@ -31,7 +31,28 @@ void MNModel::updateMNList(){
             pmn = new CMasternode();
             pmn->vin = txIn;
             pmn->activeState = CMasternode::MASTERNODE_MISSING;
-        }
+            //Check if 15 tx has 15 confirmations then start the MN
+            
+                if(masternodeSync.IsSynced()) {
+                    {
+                        LOCK2(cs_main,pwalletMain->cs_wallet);
+                        const CWalletTx *walletTx = pwalletMain->GetWalletTx(txHash);
+                        if (walletTx && walletTx->GetDepthInMainChain() > 15) {
+                            std::string strError;
+                            CMasternodeBroadcast mnb;
+                            if (CMasternodeBroadcast::Create(mne.getIp(), mne.getPrivKey(), mne.getTxHash(), mne.getOutputIndex(), strError, mnb)) {
+                                LogPrintf("Starting missing masternodes successfully automaticaly.");
+                                mnodeman.UpdateMasternodeList(mnb);
+                                mnb.Relay();
+                                //mnModel->updateMNList();
+                            } else {
+                                LogPrintf("Not emought confirmations (%i) or already started automaticaly.",walletTx->GetDepthInMainChain());
+                            }
+                        }
+                    }
+                }
+        } 
+
         nodes.insert(QString::fromStdString(mne.getAlias()), std::make_pair(QString::fromStdString(mne.getIp()), pmn));
         if(pwalletMain) {
             bool txAccepted = false;

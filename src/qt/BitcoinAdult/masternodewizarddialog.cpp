@@ -321,7 +321,15 @@ bool MasterNodeWizardDialog::createMN(){
 
                 mnEntry = masternodeConfig.add(alias, ipAddress+":"+port, mnKeyString, txID, indexOutStr);
 
-                returnStr = tr("Master node created!");
+                if(indexOut >= 0) {
+                    COutPoint outpoint = COutPoint(walletTx->GetHash(), indexOut);
+                    pwalletMain->LockCoin(outpoint);
+                    returnStr = tr("Master node created and transaction locked. After 15 confirmations you could start the MN");
+                } else {
+                    returnStr = tr("Master node created!");
+                }
+                
+                //Lock Output that MN can be started and will not spend in further transactions
                 return true;
             } else{
                 returnStr = tr("masternode.conf file doesn't exists");

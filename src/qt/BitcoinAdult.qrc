@@ -193,7 +193,7 @@
         <file alias="ic-clear-purple">BitcoinAdult/res/img/ic-clear-purple.svg</file>
         <file alias="ic-close-white">BitcoinAdult/res/img/ic-close-white.svg</file>
         <file alias="ic-close">BitcoinAdult/res/img/ic-close.svg</file>
-        <file alias="ic-coin-piv">BitcoinAdult/res/img/ic-coin-piv.svg</file>
+        <file alias="ic-coin-btad">BitcoinAdult/res/img/ic-coin-btad.svg</file>
         <file alias="ic-coin-zpiv">BitcoinAdult/res/img/ic-coin-zpiv.svg</file>
         <file alias="ic-combo-box">BitcoinAdult/res/img/ic-combo-box.svg</file>
         <file alias="ic-connect">BitcoinAdult/res/img/ic-connect.svg</file>

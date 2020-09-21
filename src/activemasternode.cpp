@@ -468,8 +468,9 @@ std::vector<COutput> CActiveMasternode::SelectCoinsMasternode()
     }
 
     // Filter
+    int cnt = 0;
     for (const COutput& out : vCoins) {
-        if (out.tx->vout[out.i].nValue == GetMstrNodCollateral(chainActive.Height())) { //exactly
+        if (out.tx->vout[out.i].nValue == (GetMstrNodCollateral(chainActive.Height())* COIN)) { //exactly
             filteredCoins.push_back(out);
         }
     }

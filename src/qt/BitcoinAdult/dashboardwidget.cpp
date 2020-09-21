@@ -56,23 +56,24 @@ DashboardWidget::DashboardWidget(BITCOINADULTGUI* parent) :
     setCssSubtitleScreen(ui->labelSubtitle);
 
     // Staking Information
-    ui->labelMessage->setText(tr("Amount of BTAD and zBTAD staked."));
+    ui->labelMessage->setText(tr("Amount of Staking and Masternode rewards."));
     setCssSubtitleScreen(ui->labelMessage);
+    ui->labelMessage->setVisible(true);
     setCssProperty(ui->labelSquarePiv, "square-chart-piv");
     setCssProperty(ui->labelSquarezPiv, "square-chart-zpiv");
+    ui->labelSquarezPiv->setVisible(true);
     setCssProperty(ui->labelPiv, "text-chart-piv");
     setCssProperty(ui->labelZpiv, "text-chart-zpiv");
-
+    ui->labelZpiv->setVisible(true);
     // Staking Amount
     QFont fontBold;
     fontBold.setWeight(QFont::Bold);
-
     setCssProperty(ui->labelChart, "legend-chart");
-
-    ui->labelAmountZpiv->setText("0 zBTAD");
-    ui->labelAmountPiv->setText("0 BTAD");
+    ui->labelAmountZpiv->setText("0 MN Rewards");
+    ui->labelAmountPiv->setText("0 Staking Rewards");
     setCssProperty(ui->labelAmountPiv, "text-stake-piv-disable");
     setCssProperty(ui->labelAmountZpiv, "text-stake-zpiv-disable");
+    ui->labelAmountZpiv->setVisible(true);
 
     setCssProperty({ui->pushButtonAll,  ui->pushButtonMonth, ui->pushButtonYear}, "btn-check-time");
     setCssProperty({ui->comboBoxMonths,  ui->comboBoxYears}, "btn-combo-chart-selected");
@@ -141,7 +142,8 @@ DashboardWidget::DashboardWidget(BITCOINADULTGUI* parent) :
     setCssProperty(ui->chartContainer, "container-chart");
     setCssProperty(ui->pushImgEmptyChart, "img-empty-staking-on");
 
-    ui->btnHowTo->setText(tr("How to get BTAD or zBTAD"));
+    //ui->btnHowTo->setText(tr("How to get BTAD or zBTAD"));
+    ui->btnHowTo->setText(tr("How to get BTAD"));
     setCssBtnSecondary(ui->btnHowTo);
 
 
@@ -228,7 +230,7 @@ void DashboardWidget::loadWalletModel(){
         stakesFilter->setSortCaseSensitivity(Qt::CaseInsensitive);
         stakesFilter->setFilterCaseSensitivity(Qt::CaseInsensitive);
         stakesFilter->setSortRole(Qt::EditRole);
-        stakesFilter->setOnlyStakes(true);
+        stakesFilter->setOnlyStakes(false);
         stakesFilter->setSourceModel(txModel);
         stakesFilter->sort(TransactionTableModel::Date, Qt::AscendingOrder);
         hasStakes = stakesFilter->rowCount() > 0;
@@ -506,7 +508,9 @@ const QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy() {
         QModelIndex modelIndex = stakesFilter->index(i, TransactionTableModel::ToAddress);
         qint64 amount = llabs(modelIndex.data(TransactionTableModel::AmountRole).toLongLong());
         QDate date = modelIndex.data(TransactionTableModel::DateRole).toDateTime().date();
-        bool isPiv = modelIndex.data(TransactionTableModel::TypeRole).toInt() != TransactionRecord::StakeZPIV;
+        //bool isPiv = modelIndex.data(TransactionTableModel::TypeRole).toInt() != TransactionRecord::StakeZPIV;
+        bool isMNReward = modelIndex.data(TransactionTableModel::TypeRole).toInt() == TransactionRecord::MNReward;
+        bool isStake = modelIndex.data(TransactionTableModel::TypeRole).toInt() == TransactionRecord::StakeMint;
 
         int time = 0;
         switch (chartShow) {
@@ -527,14 +531,15 @@ const QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy() {
                 return amountBy;
         }
         if (amountBy.contains(time)) {
-            if (isPiv) {
+            if (isStake) {
                 amountBy[time].first += amount;
-            } else
+            } else if(isMNReward) {
                 amountBy[time].second += amount;
+            }
         } else {
-            if (isPiv) {
+            if (isStake) {
                 amountBy[time] = std::make_pair(amount, 0);
-            } else {
+            } else if(isMNReward) {
                 amountBy[time] = std::make_pair(0, amount);
                 hasZpivStakes = true;
             }
@@ -632,8 +637,8 @@ void DashboardWidget::onChartRefreshed() {
         axisX->clear();
     }
     // init sets
-    set0 = new QBarSet("BTAD");
-    set1 = new QBarSet("zBTAD");
+    set0 = new QBarSet("Stake");
+    set1 = new QBarSet("MN");
     set0->setColor(QColor(92,75,125));
     set1->setColor(QColor(176,136,255));
 
@@ -657,10 +662,11 @@ void DashboardWidget::onChartRefreshed() {
         setCssProperty(ui->labelAmountZpiv, "text-stake-zpiv-disable");
     }
     forceUpdateStyle({ui->labelAmountPiv, ui->labelAmountZpiv});
-    ui->labelAmountPiv->setText(GUIUtil::formatBalance(chartData->totalPiv, nDisplayUnit));
-    ui->labelAmountZpiv->setText(GUIUtil::formatBalance(chartData->totalZpiv, nDisplayUnit, true));
+    ui->labelAmountPiv->setText(GUIUtil::formatBalance(chartData->totalPiv, nDisplayUnit).replace("BTAD","Stake"));
+    ui->labelAmountZpiv->setText(GUIUtil::formatBalance(chartData->totalZpiv, nDisplayUnit, true).replace("zBTAD","MN-Reward"));
 
     series->append(set0);
+    series->append(set1);
     if(hasZpivStakes)
         series->append(set1);
 

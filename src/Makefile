@@ -105,7 +105,7 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = x86_64-pc-linux-gnu
-host_triplet = x86_64-apple-darwin11
+host_triplet = x86_64-w64-mingw32
 bin_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_2) $(am__EXEEXT_3) \
 	$(am__EXEEXT_4) $(am__EXEEXT_5)
 noinst_PROGRAMS =
@@ -116,9 +116,9 @@ am__append_3 = libzerocoin/bignum_gmp.cpp
 #am__append_4 = libzerocoin/bignum_openssl.cpp
 #am__append_5 = compat/glibc_compat.cpp
 #am__append_6 = $(COMPAT_LDFLAGS)
-#am__append_7 = BitcoinAdultd-res.rc
-#am__append_8 = BitcoinAdult-cli-res.rc
-#am__append_9 = BitcoinAdult-tx-res.rc
+am__append_7 = BitcoinAdultd-res.rc
+am__append_8 = BitcoinAdult-cli-res.rc
+am__append_9 = BitcoinAdult-tx-res.rc
 ##am__append_10 = compat/glibc_compat.cpp
 am__append_11 = $(LIBLEVELDB_INT) \
 	$(LIBMEMENV_INT) \
@@ -127,11 +127,11 @@ am__append_12 = $(LIBLEVELDB_INT)
 am__append_13 = $(LIBMEMENV_INT)
 am__append_14 = -I$(srcdir)/leveldb/include \
 	-I$(srcdir)/leveldb/helpers/memenv
-#am__append_15 = -DLEVELDB_PLATFORM_WINDOWS -DWINVER=0x0500 -D__USE_MINGW_ANSI_STDIO=1
-am__append_16 = -DLEVELDB_PLATFORM_POSIX
-#am__append_17 = leveldb/util/env_win.cc \
-#	leveldb/port/port_win.cc
-am__append_18 = leveldb/port/port_posix.cc
+am__append_15 = -DLEVELDB_PLATFORM_WINDOWS -DWINVER=0x0500 -D__USE_MINGW_ANSI_STDIO=1
+#am__append_16 = -DLEVELDB_PLATFORM_POSIX
+am__append_17 = leveldb/util/env_win.cc \
+	leveldb/port/port_win.cc
+#am__append_18 = leveldb/port/port_posix.cc
 am__append_19 = -DLEVELDB_PLATFORM_POSIX_SSE
 am__append_20 = $(SSE42_CXXFLAGS)
 am__append_21 = test/test_BitcoinAdult
@@ -145,10 +145,10 @@ am__append_24 = $(ZMQ_LIBS)
 am__append_25 = $(CLEAN_BITCOIN_TEST)
 am__append_26 = qt/BitcoinAdult-qt
 am__append_27 = qt/libbitcoinqt.a
-#am__append_28 = $(BITCOIN_QT_WINDOWS_CPP)
+am__append_28 = $(BITCOIN_QT_WINDOWS_CPP)
 am__append_29 = $(BITCOIN_QT_WALLET_CPP)
-am__append_30 = $(BITCOIN_MM)
-#am__append_31 = $(BITCOIN_RC)
+#am__append_30 = $(BITCOIN_MM)
+am__append_31 = $(BITCOIN_RC)
 am__append_32 = $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
 am__append_33 = $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 am__append_34 = $(CLEAN_QT)
@@ -281,9 +281,9 @@ am__leveldb_libleveldb_a_SOURCES_DIST = leveldb/port/atomic_pointer.h \
 	leveldb/util/options.cc leveldb/util/status.cc \
 	leveldb/util/env_win.cc leveldb/port/port_win.cc \
 	leveldb/port/port_posix.cc
-#am__objects_1 = leveldb/util/leveldb_libleveldb_a-env_win.$(OBJEXT) \
-#	leveldb/port/leveldb_libleveldb_a-port_win.$(OBJEXT)
-am__objects_2 = leveldb/port/leveldb_libleveldb_a-port_posix.$(OBJEXT)
+am__objects_1 = leveldb/util/leveldb_libleveldb_a-env_win.$(OBJEXT) \
+	leveldb/port/leveldb_libleveldb_a-port_win.$(OBJEXT)
+#am__objects_2 = leveldb/port/leveldb_libleveldb_a-port_posix.$(OBJEXT)
 am_leveldb_libleveldb_a_OBJECTS = leveldb/db/leveldb_libleveldb_a-builder.$(OBJEXT) \
 	leveldb/db/leveldb_libleveldb_a-c.$(OBJEXT) \
 	leveldb/db/leveldb_libleveldb_a-dbformat.$(OBJEXT) \
@@ -879,7 +879,7 @@ am__qt_libbitcoinqt_a_SOURCES_DIST = qt/bantablemodel.cpp \
 	qt/BitcoinAdult/res/img/ic-radio-liliac-on.svg \
 	qt/BitcoinAdult/res/img/img-empty-staking-off.svg \
 	qt/BitcoinAdult/res/img/ic-arrow-drop-down.svg \
-	qt/BitcoinAdult/res/img/ic-coin-piv.svg \
+	qt/BitcoinAdult/res/img/ic-coin-btad.svg \
 	qt/BitcoinAdult/res/img/ic-receive-off.svg \
 	qt/BitcoinAdult/res/img/img-empty-staking-on.svg \
 	qt/BitcoinAdult/res/img/ic-arrow-drop-up-white.svg \
@@ -1022,7 +1022,7 @@ am__objects_7 =  \
 	qt/qt_libbitcoinqt_a-trafficgraphwidget.$(OBJEXT) \
 	qt/qt_libbitcoinqt_a-utilitydialog.$(OBJEXT)
 am__objects_8 = qt/qt_libbitcoinqt_a-winshutdownmonitor.$(OBJEXT)
-#am__objects_9 = $(am__objects_8)
+am__objects_9 = $(am__objects_8)
 am__objects_10 = qt/qt_libbitcoinqt_a-addressbookpage.$(OBJEXT) \
 	qt/qt_libbitcoinqt_a-addresstablemodel.$(OBJEXT) \
 	qt/qt_libbitcoinqt_a-askpassphrasedialog.$(OBJEXT) \
@@ -1297,7 +1297,7 @@ am__EXEEXT_5 =  \
 PROGRAMS = $(bin_PROGRAMS) $(noinst_PROGRAMS)
 am__BitcoinAdult_cli_SOURCES_DIST = BitcoinAdult-cli.cpp \
 	BitcoinAdult-cli-res.rc
-#am__objects_19 = BitcoinAdult-cli-res.$(OBJEXT)
+am__objects_19 = BitcoinAdult-cli-res.$(OBJEXT)
 am_BitcoinAdult_cli_OBJECTS =  \
 	BitcoinAdult_cli-BitcoinAdult-cli.$(OBJEXT) $(am__objects_19)
 BitcoinAdult_cli_OBJECTS = $(am_BitcoinAdult_cli_OBJECTS)
@@ -1314,7 +1314,7 @@ BitcoinAdult_cli_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(BitcoinAdult_cli_LDFLAGS) $(LDFLAGS) -o $@
 am__BitcoinAdult_tx_SOURCES_DIST = BitcoinAdult-tx.cpp \
 	BitcoinAdult-tx-res.rc
-#am__objects_20 = BitcoinAdult-tx-res.$(OBJEXT)
+am__objects_20 = BitcoinAdult-tx-res.$(OBJEXT)
 am_BitcoinAdult_tx_OBJECTS =  \
 	BitcoinAdult_tx-BitcoinAdult-tx.$(OBJEXT) $(am__objects_20)
 BitcoinAdult_tx_OBJECTS = $(am_BitcoinAdult_tx_OBJECTS)
@@ -1328,7 +1328,7 @@ BitcoinAdult_tx_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(BitcoinAdult_tx_LDFLAGS) $(LDFLAGS) -o $@
 am__BitcoinAdultd_SOURCES_DIST = BitcoinAdultd.cpp \
 	BitcoinAdultd-res.rc
-#am__objects_21 = BitcoinAdultd-res.$(OBJEXT)
+am__objects_21 = BitcoinAdultd-res.$(OBJEXT)
 am_BitcoinAdultd_OBJECTS = BitcoinAdultd-BitcoinAdultd.$(OBJEXT) \
 	$(am__objects_21)
 BitcoinAdultd_OBJECTS = $(am_BitcoinAdultd_OBJECTS)
@@ -1352,11 +1352,11 @@ am__qt_BitcoinAdult_qt_SOURCES_DIST = qt/BitcoinAdult.cpp \
 	qt/res/BitcoinAdult-qt-res.rc
 am__objects_22 = qt/qt_BitcoinAdult_qt-macdockiconhandler.$(OBJEXT) \
 	qt/qt_BitcoinAdult_qt-macnotificationhandler.$(OBJEXT)
-am__objects_23 =  \
-	$(am__objects_22)
+#am__objects_23 =  \
+#	$(am__objects_22)
 am__objects_24 = qt/res/BitcoinAdult-qt-res.$(OBJEXT)
-#am__objects_25 =  \
-#	$(am__objects_24)
+am__objects_25 =  \
+	$(am__objects_24)
 am_qt_BitcoinAdult_qt_OBJECTS =  \
 	qt/qt_BitcoinAdult_qt-BitcoinAdult.$(OBJEXT) \
 	$(am__objects_23) $(am__objects_25)
@@ -1847,7 +1847,7 @@ am__set_TESTS_bases = \
   bases=`echo $$bases`
 RECHECK_LOGS = $(TEST_LOGS)
 TEST_SUITE_LOG = test-suite.log
-TEST_EXTENSIONS =  .test
+TEST_EXTENSIONS = .exe .test
 LOG_DRIVER = $(SHELL) $(top_srcdir)/build-aux/test-driver
 LOG_COMPILE = $(LOG_COMPILER) $(AM_LOG_FLAGS) $(LOG_FLAGS)
 am__set_b = \
@@ -1861,7 +1861,7 @@ am__set_b = \
       b='$*';; \
   esac
 am__test_logs1 = $(TESTS:=.log)
-am__test_logs2 = $(am__test_logs1:.log=.log)
+am__test_logs2 = $(am__test_logs1:.exe.log=.log)
 TEST_LOGS = $(am__test_logs2:.test.log=.log)
 TEST_LOG_DRIVER = $(SHELL) $(top_srcdir)/build-aux/test-driver
 TEST_LOG_COMPILE = $(TEST_LOG_COMPILER) $(AM_TEST_LOG_FLAGS) \
@@ -1902,7 +1902,7 @@ am__relativize = \
 ACLOCAL = ${SHELL} /home/thomas/BTAD_1.2.0/build-aux/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 0
-AR = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/native/bin/x86_64-apple-darwin11-ar
+AR = /usr/bin/x86_64-w64-mingw32-ar
 ARFLAGS = cr
 AUTOCONF = ${SHELL} /home/thomas/BTAD_1.2.0/build-aux/missing autoconf
 AUTOHEADER = ${SHELL} /home/thomas/BTAD_1.2.0/build-aux/missing autoheader
@@ -1916,22 +1916,22 @@ BITCOIN_CLI_NAME = BitcoinAdult-cli
 BITCOIN_DAEMON_NAME = BitcoinAdultd
 BITCOIN_GUI_NAME = BitcoinAdult-qt
 BITCOIN_TX_NAME = BitcoinAdult-tx
-BOOST_CHRONO_LIB = -lboost_chrono-mt
-BOOST_CPPFLAGS = -DBOOST_SP_USE_STD_ATOMIC -DBOOST_AC_USE_STD_ATOMIC -pthread -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../include
-BOOST_FILESYSTEM_LIB = -lboost_filesystem-mt
-BOOST_LDFLAGS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../lib
-BOOST_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../lib -lboost_system-mt -lboost_filesystem-mt -lboost_program_options-mt -lboost_thread-mt -lboost_chrono-mt
-BOOST_PROGRAM_OPTIONS_LIB = -lboost_program_options-mt
-BOOST_SYSTEM_LIB = -lboost_system-mt
-BOOST_THREAD_LIB = -lboost_thread-mt
-BOOST_UNIT_TEST_FRAMEWORK_LIB = -lboost_unit_test_framework-mt
-BREW = no
-CC = /usr/bin/ccache /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/native/bin/clang -target x86_64-apple-darwin11 -mmacosx-version-min=10.10 --sysroot /home/thomas/Schreibtisch/depends/SDKs/MacOSX10.11.sdk -mlinker-version=253.9
+BOOST_CHRONO_LIB = -lboost_chrono-mt-s
+BOOST_CPPFLAGS = -DBOOST_SP_USE_STD_ATOMIC -DBOOST_AC_USE_STD_ATOMIC -mthreads -I/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../include
+BOOST_FILESYSTEM_LIB = -lboost_filesystem-mt-s
+BOOST_LDFLAGS = -L/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../lib
+BOOST_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../lib -lboost_system-mt-s -lboost_filesystem-mt-s -lboost_program_options-mt-s -lboost_thread_win32-mt-s -lboost_chrono-mt-s
+BOOST_PROGRAM_OPTIONS_LIB = -lboost_program_options-mt-s
+BOOST_SYSTEM_LIB = -lboost_system-mt-s
+BOOST_THREAD_LIB = -lboost_thread_win32-mt-s
+BOOST_UNIT_TEST_FRAMEWORK_LIB = -lboost_unit_test_framework-mt-s
+BREW = 
+CC = /usr/bin/ccache x86_64-w64-mingw32-gcc
 CCACHE = /usr/bin/ccache
 CCDEPMODE = depmode=gcc3
 CFLAGS = -pipe -O2 
-CHARTS_CFLAGS = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCharts -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtWidgets -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtGui -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCore
-CHARTS_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -L/home/thomas/Schreibtisch/depends/work/build/x86_64-apple-darwin11/qt/5.9.7-8598509afda/qtbase/lib -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lQt5Charts -lQt5Widgets -framework DiskArbitration -framework IOKit -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -framework CoreGraphics -framework OpenGL -framework AGL -framework Carbon -lQt5Gui -lqtlibpng -lqtharfbuzz -lQt5Core -lm -lz -lqtpcre2 -framework OpenGL -framework AGL -lQt5Widgets -lQt5Gui -framework DiskArbitration -framework IOKit -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -framework CoreGraphics -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -lQt5Core -lm -lz -lqtpcre2 -framework AppKit -lz -framework Carbon -framework OpenGL -framework AGL -lQt5Gui -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -framework AppKit -framework CoreGraphics -framework Foundation -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -framework ApplicationServices -lz -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2
+CHARTS_CFLAGS = 
+CHARTS_LIBS = -lQt5Charts
 CLIENT_VERSION_BUILD = 0
 CLIENT_VERSION_IS_RELEASE = false
 CLIENT_VERSION_MAJOR = 1
@@ -1939,13 +1939,13 @@ CLIENT_VERSION_MINOR = 2
 CLIENT_VERSION_REVISION = 0
 COMPAT_LDFLAGS = 
 COPYRIGHT_YEAR = 2020
-CPP = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/native/bin/clang -target x86_64-apple-darwin11 -mmacosx-version-min=10.10 --sysroot /home/thomas/Schreibtisch/depends/SDKs/MacOSX10.11.sdk -mlinker-version=253.9 -E
-CPPFILT = /usr/bin/c++filt
-CPPFLAGS = -Qunused-arguments -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../include/  -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS -DMAC_OSX
-CRYPTO_CFLAGS = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include
-CRYPTO_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lcrypto
-CXX = /usr/bin/ccache /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/native/bin/clang++ -target x86_64-apple-darwin11 -mmacosx-version-min=10.10 --sysroot /home/thomas/Schreibtisch/depends/SDKs/MacOSX10.11.sdk -mlinker-version=253.9 -stdlib=libc++ -std=c++11
-CXXCPP = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/native/bin/clang++ -target x86_64-apple-darwin11 -mmacosx-version-min=10.10 --sysroot /home/thomas/Schreibtisch/depends/SDKs/MacOSX10.11.sdk -mlinker-version=253.9 -stdlib=libc++ -std=c++11 -E
+CPP = x86_64-w64-mingw32-gcc -E
+CPPFILT = /usr/bin/x86_64-w64-mingw32-c++filt
+CPPFLAGS = -I/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../include/  -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS -D_MT -DWIN32 -D_WINDOWS -DBOOST_THREAD_USE_LIB -D_FILE_OFFSET_BITS=64
+CRYPTO_CFLAGS = 
+CRYPTO_LIBS = -lcrypto
+CXX = /usr/bin/ccache x86_64-w64-mingw32-g++ -std=c++11
+CXXCPP = x86_64-w64-mingw32-g++ -std=c++11 -E
 CXXDEPMODE = depmode=gcc3
 CXXFLAGS = -pipe -O2 
 CYGPATH_W = echo
@@ -1953,79 +1953,79 @@ DEBUG_CPPFLAGS =
 DEBUG_CXXFLAGS = 
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
-DLLTOOL = false
+DLLTOOL = x86_64-w64-mingw32-dlltool
 DOXYGEN = 
-DSYMUTIL = x86_64-apple-darwin11-dsymutil
+DSYMUTIL = 
 DUMPBIN = 
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
 EGREP = /bin/grep -E
 ERROR_CXXFLAGS = 
-EVENT_CFLAGS = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include
-EVENT_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -levent
-EVENT_PTHREADS_CFLAGS = -D_THREAD_SAFE -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include
-EVENT_PTHREADS_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -levent_pthreads -levent
-EXEEXT = 
+EVENT_CFLAGS = 
+EVENT_LIBS = -levent
+EVENT_PTHREADS_CFLAGS = 
+EVENT_PTHREADS_LIBS = 
+EXEEXT = .exe
 EXTENDED_FUNCTIONAL_TESTS = 
 FGREP = /bin/grep -F
-GCOV = /usr/bin/gcov
+GCOV = /usr/bin/x86_64-w64-mingw32-gcov
 GENHTML = 
-GENISOIMAGE = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../native/bin/genisoimage
+GENISOIMAGE = 
 GIT = /usr/bin/git
 GPROF_CXXFLAGS = 
 GPROF_LDFLAGS = 
 GREP = /bin/grep
 HARDENED_CPPFLAGS =  -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2
 HARDENED_CXXFLAGS =  -Wstack-protector -fstack-protector-all
-HARDENED_LDFLAGS = 
+HARDENED_LDFLAGS =  -Wl,--dynamicbase -Wl,--nxcompat -Wl,--high-entropy-va -pie
 HAVE_CXX11 = 1
 HEXDUMP = /usr/bin/hexdump
-IMAGEMAGICK_CONVERT = /usr/bin/convert
+IMAGEMAGICK_CONVERT = 
 INSTALL = /usr/bin/install -c
-INSTALLNAMETOOL = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../native/bin/x86_64-apple-darwin11-install_name_tool
+INSTALLNAMETOOL = 
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LCOV = 
 LCOV_OPTS = 
-LD = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/native/bin/x86_64-apple-darwin11-ld
-LDFLAGS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../lib  -Wl,-headerpad_max_install_names -Wl,-dead_strip
+LD = /usr/bin/x86_64-w64-mingw32-ld
+LDFLAGS = -L/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../lib 
 LEVELDB_CPPFLAGS =  $(am__append_14)
-LEVELDB_TARGET_FLAGS = -DOS_MACOSX
+LEVELDB_TARGET_FLAGS = -DOS_WINDOWS
 LIBLEVELDB =  $(am__append_12)
 LIBMEMENV =  $(am__append_13)
 LIBOBJS = 
-LIBS =  -lgmp
+LIBS = -lQt5AccessibilitySupport -lQt5DeviceDiscoverySupport -lQt5FbSupport -lQt5ThemeSupport -lQt5EventDispatcherSupport -lQt5FontDatabaseSupport -lssp -lcrypt32 -liphlpapi -lshlwapi -lmswsock -lws2_32 -ladvapi32 -lrpcrt4 -luuid -loleaut32 -lole32 -lcomctl32 -lshell32 -lwinmm -lwinspool -lcomdlg32 -lgdi32 -luser32 -lkernel32 -lmingwthrd  -lgmp
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
-LIBTOOL_APP_LDFLAGS = 
-LIPO = x86_64-apple-darwin11-lipo
+LIBTOOL_APP_LDFLAGS =  -all-static
+LIPO = 
 LN_S = ln -s
-LRELEASE = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../native/bin/lrelease
+LRELEASE = /home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../native/bin/lrelease
 LTLIBOBJS = 
 LT_SYS_LIBRARY_PATH = 
-LUPDATE = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../native/bin/lupdate
+LUPDATE = /home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../native/bin/lupdate
 MAINT = 
 MAKEINFO = ${SHELL} /home/thomas/BTAD_1.2.0/build-aux/missing makeinfo
-MAKENSIS = 
+MAKENSIS = /usr/bin/makensis
 MANIFEST_TOOL = :
-MINIUPNPC_CPPFLAGS = 
+MINIUPNPC_CPPFLAGS = -DSTATICLIB -DMINIUPNP_STATICLIB
 MINIUPNPC_LIBS = -lminiupnpc
 MKDIR_P = /bin/mkdir -p
-MOC = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../native/bin/moc
-MOC_DEFS = -DHAVE_CONFIG_H -I$(srcdir) -DQ_OS_MAC
-NM = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/native/bin/x86_64-apple-darwin11-nm
-NMEDIT = x86_64-apple-darwin11-nmedit
+MOC = /home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../native/bin/moc
+MOC_DEFS = -DHAVE_CONFIG_H -I$(srcdir)
+NM = x86_64-w64-mingw32-nm
+NMEDIT = 
 NOWARN_CXXFLAGS = 
-OBJCOPY = /usr/bin/objcopy
-OBJCXX = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/native/bin/clang++ -target x86_64-apple-darwin11 -mmacosx-version-min=10.10 --sysroot /home/thomas/Schreibtisch/depends/SDKs/MacOSX10.11.sdk -mlinker-version=253.9 -stdlib=libc++ -std=c++11
+OBJCOPY = /usr/bin/x86_64-w64-mingw32-objcopy
+OBJCXX = x86_64-w64-mingw32-g++ -std=c++11
 OBJCXXDEPMODE = depmode=gcc3
-OBJCXXFLAGS = -pipe -O2 
-OBJDUMP = objdump
+OBJCXXFLAGS = 
+OBJDUMP = x86_64-w64-mingw32-objdump
 OBJEXT = o
-OTOOL = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../native/bin/x86_64-apple-darwin11-otool
-OTOOL64 = :
+OTOOL = 
+OTOOL64 = 
 PACKAGE = BTAD
 PACKAGE_BUGREPORT = https://github.com/TBD
 PACKAGE_NAME = Bitcoin Adult BTAD Core
@@ -2034,68 +2034,68 @@ PACKAGE_TARNAME = BTAD
 PACKAGE_URL = https://www.Bitcoin-Adult.org/
 PACKAGE_VERSION = 1.2.0
 PATH_SEPARATOR = :
-PIC_FLAGS = -fPIC
-PIE_FLAGS = 
+PIC_FLAGS = 
+PIE_FLAGS = -fPIE
 PKG_CONFIG = /usr/bin/pkg-config --static
 PKG_CONFIG_LIBDIR = 
-PKG_CONFIG_PATH = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../share/pkgconfig:/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../lib/pkgconfig
-PORT = no
-PROTOBUF_CFLAGS = -D_THREAD_SAFE -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include
-PROTOBUF_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lprotobuf -D_THREAD_SAFE -lz
-PROTOC = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../native/bin/protoc
-PTHREAD_CC = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/native/bin/clang -target x86_64-apple-darwin11 -mmacosx-version-min=10.10 --sysroot /home/thomas/Schreibtisch/depends/SDKs/MacOSX10.11.sdk -mlinker-version=253.9
-PTHREAD_CFLAGS = -Qunused-arguments -pthread
+PKG_CONFIG_PATH = /home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../share/pkgconfig:/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../lib/pkgconfig
+PORT = 
+PROTOBUF_CFLAGS = 
+PROTOBUF_LIBS = -lprotobuf
+PROTOC = /home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../native/bin/protoc
+PTHREAD_CC = x86_64-w64-mingw32-gcc
+PTHREAD_CFLAGS = -pthread
 PTHREAD_LIBS = 
 PYTHON = /usr/bin/python3.6
-PYTHONPATH = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../native/lib/python3/dist-packages:
-QR_CFLAGS = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include
-QR_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lqrencode -lpthread
-QT5_CFLAGS = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtNetwork -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtWidgets -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtGui -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCore
-QT5_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lQt5Network -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -framework Security -framework CoreFoundation -framework CoreServices -framework SystemConfiguration -lz -lssl -lcrypto -lQt5Widgets -lQt5Gui -framework DiskArbitration -framework IOKit -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -framework CoreGraphics -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -lQt5Core -lm -lz -lqtpcre2 -framework AppKit -lz -framework Carbon -framework OpenGL -framework AGL -lQt5Gui -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -framework AppKit -framework CoreGraphics -framework Foundation -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -framework ApplicationServices -lz -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2
-QTACCESSIBILITY_CFLAGS = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtAccessibilitySupport -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtGui -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCore
-QTACCESSIBILITY_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lQt5AccessibilitySupport -lQt5Gui -framework DiskArbitration -framework IOKit -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -framework CoreGraphics -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -lQt5Core -lm -lz -lqtpcre2 -framework OpenGL -framework AGL -lQt5Gui -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -framework AppKit -framework CoreGraphics -framework Foundation -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -framework ApplicationServices -lz -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2
-QTCGL_CFLAGS = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCglSupport -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtGui -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCore
-QTCGL_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lQt5CglSupport -lQt5Gui -framework DiskArbitration -framework IOKit -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -framework CoreGraphics -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -lQt5Core -lm -lz -lqtpcre2 -framework AppKit -framework OpenGL -framework AGL -lQt5Gui -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -framework AppKit -framework CoreGraphics -framework Foundation -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -framework ApplicationServices -lz -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2
-QTCLIPBOARD_CFLAGS = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtClipboardSupport -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtGui -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCore
-QTCLIPBOARD_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lQt5ClipboardSupport -lQt5Gui -framework DiskArbitration -framework IOKit -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -framework CoreGraphics -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -lQt5Core -lm -lz -lqtpcre2 -framework AppKit -framework OpenGL -framework AGL -lQt5Gui -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -framework AppKit -framework CoreGraphics -framework Foundation -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -framework ApplicationServices -lz -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2
-QTDEVICEDISCOVERY_CFLAGS = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtDeviceDiscoverySupport -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCore
-QTDEVICEDISCOVERY_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lQt5DeviceDiscoverySupport -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2
-QTEVENTDISPATCHER_CFLAGS = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtEventDispatcherSupport -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtGui -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCore
-QTEVENTDISPATCHER_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lQt5EventDispatcherSupport -lQt5Gui -framework DiskArbitration -framework IOKit -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -framework CoreGraphics -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -lQt5Core -lm -lz -lqtpcre2 -framework OpenGL -framework AGL -lQt5Gui -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -framework AppKit -framework CoreGraphics -framework Foundation -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -framework ApplicationServices -lz -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2
-QTFB_CFLAGS = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtFbSupport -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtGui -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCore
-QTFB_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lQt5FbSupport -lQt5Gui -framework DiskArbitration -framework IOKit -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -framework CoreGraphics -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -lQt5Core -lm -lz -lqtpcre2 -framework OpenGL -framework AGL -lQt5Gui -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -framework AppKit -framework CoreGraphics -framework Foundation -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -framework ApplicationServices -lz -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2
-QTFONTDATABASE_CFLAGS = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtFontDatabaseSupport -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtGui -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCore
-QTFONTDATABASE_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lQt5FontDatabaseSupport -lQt5Gui -framework DiskArbitration -framework IOKit -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -framework CoreGraphics -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -lQt5Core -lm -lz -lqtpcre2 -framework CoreFoundation -framework CoreGraphics -framework CoreText -framework Foundation -framework AppKit -framework OpenGL -framework AGL -lQt5Gui -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -framework AppKit -framework CoreGraphics -framework Foundation -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -framework ApplicationServices -lz -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2
-QTGRAPHICS_CFLAGS = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtGraphicsSupport -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtGui -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCore
-QTGRAPHICS_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lQt5GraphicsSupport -lQt5Gui -framework DiskArbitration -framework IOKit -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -framework CoreGraphics -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -lQt5Core -lm -lz -lqtpcre2 -framework OpenGL -framework AGL -lQt5Gui -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -framework AppKit -framework CoreGraphics -framework Foundation -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -framework ApplicationServices -lz -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2
+PYTHONPATH = /home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../native/lib/python3/dist-packages:
+QR_CFLAGS = 
+QR_LIBS = -lqrencode
+QT5_CFLAGS = 
+QT5_LIBS = 
+QTACCESSIBILITY_CFLAGS = 
+QTACCESSIBILITY_LIBS = 
+QTCGL_CFLAGS = 
+QTCGL_LIBS = 
+QTCLIPBOARD_CFLAGS = 
+QTCLIPBOARD_LIBS = 
+QTDEVICEDISCOVERY_CFLAGS = 
+QTDEVICEDISCOVERY_LIBS = 
+QTEVENTDISPATCHER_CFLAGS = 
+QTEVENTDISPATCHER_LIBS = 
+QTFB_CFLAGS = 
+QTFB_LIBS = 
+QTFONTDATABASE_CFLAGS = 
+QTFONTDATABASE_LIBS = 
+QTGRAPHICS_CFLAGS = 
+QTGRAPHICS_LIBS = 
 QTPLATFORM_CFLAGS = 
 QTPLATFORM_LIBS = 
-QTTHEME_CFLAGS = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtThemeSupport -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtGui -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCore
-QTTHEME_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lQt5ThemeSupport -lQt5Gui -framework DiskArbitration -framework IOKit -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -framework CoreGraphics -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -lQt5Core -lm -lz -lqtpcre2 -framework OpenGL -framework AGL -lQt5Gui -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -framework AppKit -framework CoreGraphics -framework Foundation -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -framework ApplicationServices -lz -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2
+QTTHEME_CFLAGS = 
+QTTHEME_LIBS = 
 QTXCBQPA_CFLAGS = 
 QTXCBQPA_LIBS = 
-QT_CONCURRENT_CFLAGS = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtConcurrent -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCore
-QT_CONCURRENT_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lQt5Concurrent -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2
-QT_DBUS_CFLAGS = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtDBus -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCore
-QT_DBUS_INCLUDES = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtDBus -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCore
-QT_DBUS_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lQt5DBus -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2
-QT_INCLUDES = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtNetwork -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtWidgets -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtGui -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCore -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtConcurrent -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCore
-QT_LDFLAGS = 
-QT_LIBS = -lqcocoa -lqsvgicon -lqsvg -lqminimal -lQt5CglSupport -lQt5GraphicsSupport -lQt5ClipboardSupport -lQt5FbSupport -lQt5AccessibilitySupport -lQt5DeviceDiscoverySupport -lQt5ThemeSupport -lQt5EventDispatcherSupport -lQt5FontDatabaseSupport -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lQt5Network -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -framework Security -framework CoreFoundation -framework CoreServices -framework SystemConfiguration -lz -lssl -lcrypto -lQt5Widgets -lQt5Gui -framework DiskArbitration -framework IOKit -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -framework CoreGraphics -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -lQt5Core -lm -lz -lqtpcre2 -framework AppKit -lz -framework Carbon -framework OpenGL -framework AGL -lQt5Gui -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -framework AppKit -framework CoreGraphics -framework Foundation -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -framework ApplicationServices -lz -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -L/home/thomas/Schreibtisch/depends/work/build/x86_64-apple-darwin11/qt/5.9.7-8598509afda/qtbase/lib -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lQt5Svg -lQt5Widgets -framework DiskArbitration -framework IOKit -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -framework CoreGraphics -framework OpenGL -framework AGL -framework Carbon -lQt5Gui -lqtlibpng -lqtharfbuzz -lQt5Core -lm -lz -lqtpcre2 -framework OpenGL -framework AGL -lz -lQt5Widgets -lQt5Gui -framework DiskArbitration -framework IOKit -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -framework CoreGraphics -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -lQt5Core -lm -lz -lqtpcre2 -framework AppKit -lz -framework Carbon -framework OpenGL -framework AGL -lQt5Gui -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -framework AppKit -framework CoreGraphics -framework Foundation -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -framework ApplicationServices -lz -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lQt5Concurrent -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../plugins/platforms -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../plugins/imageformats -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../plugins/iconengines -framework IOKit -framework Foundation -framework ApplicationServices -framework AppKit
-QT_PIE_FLAGS = 
+QT_CONCURRENT_CFLAGS = 
+QT_CONCURRENT_LIBS = 
+QT_DBUS_CFLAGS = 
+QT_DBUS_INCLUDES = 
+QT_DBUS_LIBS = -lQt5DBus -L/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../lib
+QT_INCLUDES = -I/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../include -I/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../include/QtCore -I/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../include/QtGui -I/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../include/QtWidgets -I/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../include/QtNetwork -I/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../include/QtTest -I/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../include/QtDBus -I/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../include/QtConcurrent -I/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../include/QtSvg -I/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../include/QtCharts
+QT_LDFLAGS =  -mwindows
+QT_LIBS = -lqwindows -lqsvgicon -lqsvg -lqminimal -lQt5Concurrent -lQt5Widgets -lQt5Network -lQt5Gui     -lQt5Core    -lqtharfbuzz -lqtpcre2 -lqtlibpng -lz  -limm32  -L/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../lib -lQt5Svg -L/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../lib -L/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../plugins/platforms -L/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../plugins/imageformats -L/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../plugins/iconengines -lversion -ldwmapi -luxtheme
+QT_PIE_FLAGS = -fPIE
 QT_SELECT = qt5
-QT_SVG_CFLAGS = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtSvg -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtWidgets -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtGui -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCore
-QT_SVG_INCLUDES = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtSvg -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtWidgets -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtGui -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCore
-QT_SVG_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -L/home/thomas/Schreibtisch/depends/work/build/x86_64-apple-darwin11/qt/5.9.7-8598509afda/qtbase/lib -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lQt5Svg -lQt5Widgets -framework DiskArbitration -framework IOKit -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -framework CoreGraphics -framework OpenGL -framework AGL -framework Carbon -lQt5Gui -lqtlibpng -lqtharfbuzz -lQt5Core -lm -lz -lqtpcre2 -framework OpenGL -framework AGL -lz -lQt5Widgets -lQt5Gui -framework DiskArbitration -framework IOKit -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -framework CoreGraphics -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -lQt5Core -lm -lz -lqtpcre2 -framework AppKit -lz -framework Carbon -framework OpenGL -framework AGL -lQt5Gui -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2 -framework AppKit -framework CoreGraphics -framework Foundation -framework OpenGL -framework AGL -lqtlibpng -lqtharfbuzz -framework ApplicationServices -lz -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2
-QT_TEST_CFLAGS = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtTest -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCore
-QT_TEST_INCLUDES = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtTest -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include/QtCore
-QT_TEST_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lQt5Test -framework Security -framework Foundation -framework ApplicationServices -framework IOKit -lQt5Core -framework DiskArbitration -lm -framework CoreServices -framework AppKit -framework CoreFoundation -lz -lqtpcre2 -lQt5Core -framework DiskArbitration -framework IOKit -lm -framework Foundation -framework CoreServices -framework AppKit -framework ApplicationServices -framework CoreFoundation -lz -lqtpcre2
-QT_TRANSLATION_DIR = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../translations
-RANLIB = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/native/bin/x86_64-apple-darwin11-ranlib
-RCC = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../native/bin/rcc
-READELF = /usr/bin/readelf
+QT_SVG_CFLAGS = 
+QT_SVG_INCLUDES = 
+QT_SVG_LIBS = -lQt5Svg -L/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../lib
+QT_TEST_CFLAGS = 
+QT_TEST_INCLUDES = 
+QT_TEST_LIBS = -lQt5Test -L/home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../lib
+QT_TRANSLATION_DIR = /home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../translations
+RANLIB = /usr/bin/x86_64-w64-mingw32-ranlib
+RCC = /home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../native/bin/rcc
+READELF = /usr/bin/x86_64-w64-mingw32-readelf
 RELDFLAGS = 
-RSVG_CONVERT = /usr/bin/rsvg-convert
+RSVG_CONVERT = 
 SANITIZER_CXXFLAGS = 
 SANITIZER_LDFLAGS = 
 SED = /bin/sed
@@ -2104,12 +2104,12 @@ SHANI_CXXFLAGS = -msse4 -msha
 SHELL = /bin/bash
 SSE41_CXXFLAGS = -msse4.1
 SSE42_CXXFLAGS = -msse4.2
-SSL_CFLAGS = -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include
-SSL_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lssl -lcrypto
-STRIP = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../native/bin/x86_64-apple-darwin11-strip
+SSL_CFLAGS = 
+SSL_LIBS = -lssl
+STRIP = /usr/bin/x86_64-w64-mingw32-strip
 TESTDEFS = 
-TIFFCP = /usr/bin/tiffcp
-UIC = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/share/../native/bin/uic
+TIFFCP = 
+UIC = /home/thomas/Schreibtisch/depends/x86_64-w64-mingw32/share/../native/bin/uic
 UNIVALUE_CFLAGS = -I$(srcdir)/univalue/include
 UNIVALUE_LIBS = univalue/libunivalue.la
 USE_NUM_GMP = 
@@ -2118,13 +2118,13 @@ USE_QTCHARTS =
 USE_UPNP = 
 VERSION = 1.2.0
 WARN_CXXFLAGS = 
-WINDOWS_BITS = 
-WINDRES = 
+WINDOWS_BITS = 64
+WINDRES = /usr/bin/x86_64-w64-mingw32-windres
 X11XCB_CFLAGS = 
 X11XCB_LIBS = 
 XGETTEXT = /usr/bin/xgettext
-ZMQ_CFLAGS = -DZMQ_BUILD_DRAFT_API=1 -I/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/include
-ZMQ_LIBS = -L/home/thomas/Schreibtisch/depends/x86_64-apple-darwin11/lib -lzmq -lpthread
+ZMQ_CFLAGS =  -DZMQ_STATIC
+ZMQ_LIBS = -lzmq
 abs_builddir = /home/thomas/BTAD_1.2.0/src
 abs_srcdir = /home/thomas/BTAD_1.2.0/src
 abs_top_builddir = /home/thomas/BTAD_1.2.0
@@ -2152,11 +2152,11 @@ datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = x86_64-apple-darwin11
-host_alias = x86_64-apple-darwin11
+host = x86_64-w64-mingw32
+host_alias = x86_64-w64-mingw32
 host_cpu = x86_64
-host_os = darwin11
-host_vendor = apple
+host_os = mingw32
+host_vendor = w64
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
@@ -2169,7 +2169,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /home/thomas/Schreibtisch/depends/x86_64-apple-darwin11
+prefix = /home/thomas/Schreibtisch/depends/x86_64-w64-mingw32
 program_transform_name = s,x,x,
 psdir = ${docdir}
 runstatedir = ${localstatedir}/run
@@ -3242,7 +3242,7 @@ RES_ICONS = \
   qt/BitcoinAdult/res/img/ic-radio-liliac-on.svg \
   qt/BitcoinAdult/res/img/img-empty-staking-off.svg \
   qt/BitcoinAdult/res/img/ic-arrow-drop-down.svg \
-  qt/BitcoinAdult/res/img/ic-coin-piv.svg \
+  qt/BitcoinAdult/res/img/ic-coin-btad.svg \
   qt/BitcoinAdult/res/img/ic-receive-off.svg \
   qt/BitcoinAdult/res/img/img-empty-staking-on.svg \
   qt/BitcoinAdult/res/img/ic-arrow-drop-up-white.svg \
@@ -12192,13 +12192,13 @@ qt/test/test_BitcoinAdult-qt.log: qt/test/test_BitcoinAdult-qt$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_TEST_LOG_DRIVER_FLAGS) $(TEST_LOG_DRIVER_FLAGS) -- $(TEST_LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
-#.test$(EXEEXT).log:
-#	@p='$<'; \
-#	$(am__set_b); \
-#	$(am__check_pre) $(TEST_LOG_DRIVER) --test-name "$$f" \
-#	--log-file $$b.log --trs-file $$b.trs \
-#	$(am__common_driver_flags) $(AM_TEST_LOG_DRIVER_FLAGS) $(TEST_LOG_DRIVER_FLAGS) -- $(TEST_LOG_COMPILE) \
-#	"$$tst" $(AM_TESTS_FD_REDIRECT)
+.test$(EXEEXT).log:
+	@p='$<'; \
+	$(am__set_b); \
+	$(am__check_pre) $(TEST_LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_TEST_LOG_DRIVER_FLAGS) $(TEST_LOG_DRIVER_FLAGS) -- $(TEST_LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 
 distdir: $(DISTFILES)
 	@srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*]/\\\\&/g'`; \

@@ -40,7 +40,7 @@ TopBar::TopBar(BITCOINADULTGUI* _mainWindow, QWidget *parent) :
     ui->containerTop->setProperty("cssClass", "container-top");
 #endif
 
-    std::initializer_list<QWidget*> lblTitles = {ui->labelTitle1, ui->labelTitle2, ui->labelTitle3, ui->labelTitle4, ui->labelTitle5, ui->labelTitle6};
+    std::initializer_list<QWidget*> lblTitles = {ui->labelTitle1, ui->labelCoinsTotal, ui->labelTitle2, ui->labelTitle3, ui->labelTitle4, ui->labelTitle5, ui->labelTitle10, ui->labelTitle6, ui->labelLockedExp, ui->labelTotalCoins, ui->labelLockedCoins};
     setCssProperty(lblTitles, "text-title-topbar");
     QFont font;
     font.setWeight(QFont::Light);
@@ -49,9 +49,29 @@ TopBar::TopBar(BITCOINADULTGUI* _mainWindow, QWidget *parent) :
     // Amount information top
     ui->widgetTopAmount->setVisible(false);
     setCssProperty({ui->labelAmountTopPiv, ui->labelAmountTopzPiv}, "amount-small-topbar");
+    //setCssProperty({ui->labelAmountPiv,ui->labelAmountBTAD, ui->labelAmountzPiv}, "amount-topbar");
     setCssProperty({ui->labelAmountPiv, ui->labelAmountzPiv}, "amount-topbar");
-    setCssProperty({ui->labelPendingPiv, ui->labelPendingzPiv, ui->labelImmaturePiv, ui->labelImmaturezPiv}, "amount-small-topbar");
+    setCssProperty({ui->labelPendingPiv,ui->labelAmountBTAD, ui->labelPendingzPiv, ui->labelImmaturePiv, ui->labelImmaturezPiv, ui->labelTotalCoins,ui->labelLockedCoins, ui->labelLockedExp}, "amount-small-topbar");
 
+    ui->labelAmountzPiv->setVisible(false);
+    ui->labelPendingzPiv->setVisible(false);
+    ui->labelImmaturezPiv->setVisible(false);
+    //ui->labelTotalCoins->setVisible(true);
+    ui->labelTitle2->setVisible(false);
+    ui->labelTitle5->setVisible(false);
+    ui->labelTitle6->setVisible(false);
+    ui->labelAmountTopzPiv->setVisible(false);
+    ui->label_9->setVisible(false);
+    ui->label_16->setVisible(false);
+
+    setCssProperty(ui->btnIconAvailable, "coin-icon-piv");
+    setCssProperty(ui->btnIconAvailable2, "coin-icon-piv");
+    setCssProperty(ui->btnIconLocked, "coin-icon-piv");
+    setCssProperty(ui->btnIconTotal, "coin-icon-piv");
+    setCssProperty(ui->btnIconTotal2, "coin-icon-piv");
+    setCssProperty(ui->btnIconTotal2_2, "coin-icon-piv");
+    setCssProperty(ui->btnIconTotal2_3, "coin-icon-piv");
+    setCssProperty(ui->btnIconTotal2_4, "coin-icon-piv");
     // Progress Sync
     progressBar = new QProgressBar(ui->layoutSync);
     progressBar->setRange(1, 10);
@@ -76,6 +96,7 @@ TopBar::TopBar(BITCOINADULTGUI* _mainWindow, QWidget *parent) :
 
     ui->pushButtonColdStaking->setButtonClassStyle("cssClass", "btn-check-cold-staking-inactive");
     ui->pushButtonColdStaking->setButtonText("Cold Staking Disabled");
+    ui->pushButtonColdStaking->setVisible(false);
 
     ui->pushButtonMint->setButtonClassStyle("cssClass", "btn-check-mint-inactive");
     ui->pushButtonMint->setButtonText("Automint Enabled");
@@ -323,7 +344,7 @@ void TopBar::onColdStakingClicked() {
     ui->pushButtonColdStaking->setButtonText(text);
     updateStyle(ui->pushButtonColdStaking);
 
-    emit onShowHideColdStakingChanged(show);
+    //emit onShowHideColdStakingChanged(show);
 }
 
 TopBar::~TopBar(){
@@ -487,7 +508,7 @@ void TopBar::loadWalletModel(){
     updateDisplayUnit();
 
     refreshStatus();
-    onColdStakingClicked();
+    //onColdStakingClicked();
 
     isInitializing = false;
 }
@@ -550,22 +571,32 @@ void TopBar::updateBalances(const CAmount& balance, const CAmount& unconfirmedBa
     // zBTAD Balance
     CAmount matureZerocoinBalance = zerocoinBalance - unconfirmedZerocoinBalance - immatureZerocoinBalance;
 
+    CAmount totalBTAD = pivAvailableBalance+nLockedBalance+immatureBalance;
     // Set
-    QString totalPiv = GUIUtil::formatBalance(pivAvailableBalance, nDisplayUnit);
+    QString totalPiv = GUIUtil::formatBalance(pivAvailableBalance, nDisplayUnit); // nDisplayUnit -> 3
+    QString strTotalBTAD = GUIUtil::formatBalance(totalBTAD,nDisplayUnit);
+    QString strLockedBTAD = GUIUtil::formatBalance((nLockedBalance),nDisplayUnit);
     QString totalzPiv = GUIUtil::formatBalance(matureZerocoinBalance, nDisplayUnit, true);
+    QString sTotalBTAD = strTotalBTAD.replace("BTAD","");
+    QString sLockedBTAD = strLockedBTAD.replace("BTAD", "");
+    QString sAvailableBTAD = totalPiv.replace("BTAD", "");
     // Top
-    ui->labelAmountTopPiv->setText(totalPiv);
+    ui->labelAmountTopPiv->setText("Available: " + sAvailableBTAD); //totalPiv.left(totalPiv.length()-4)
     ui->labelAmountTopzPiv->setText(totalzPiv);
+    ui->labelLockedCoins->setText("Locked: " + sLockedBTAD); // strLockedBTAD.left(strLockedBTAD.length()-4)
+    ui->labelTotalCoins->setText("Total: " + sTotalBTAD); //strTotalBTAD.left(strTotalBTAD.length()-4)
 
     // Expanded
-    ui->labelAmountPiv->setText(totalPiv);
-    ui->labelAmountzPiv->setText(totalzPiv);
+    ui->labelAmountPiv->setText(sAvailableBTAD);
+    ui->labelAmountzPiv->setText(totalzPiv.left(totalzPiv.length()-4));
+    ui->labelAmountBTAD->setText(sTotalBTAD);
+    ui->labelLockedExp->setText(sLockedBTAD);
 
-    ui->labelPendingPiv->setText(GUIUtil::formatBalance(unconfirmedBalance, nDisplayUnit));
-    ui->labelPendingzPiv->setText(GUIUtil::formatBalance(unconfirmedZerocoinBalance, nDisplayUnit, true));
+    ui->labelPendingPiv->setText(GUIUtil::formatBalance(unconfirmedBalance, nDisplayUnit).replace("BTAD",""));
+    ui->labelPendingzPiv->setText(GUIUtil::formatBalance(unconfirmedZerocoinBalance, nDisplayUnit, true).replace("BTAD",""));
 
-    ui->labelImmaturePiv->setText(GUIUtil::formatBalance(immatureBalance, nDisplayUnit));
-    ui->labelImmaturezPiv->setText(GUIUtil::formatBalance(immatureZerocoinBalance, nDisplayUnit, true));
+    ui->labelImmaturePiv->setText(GUIUtil::formatBalance(immatureBalance, nDisplayUnit).replace("BTAD",""));
+    ui->labelImmaturezPiv->setText(GUIUtil::formatBalance(immatureZerocoinBalance, nDisplayUnit, true).replace("BTAD",""));
 }
 
 void TopBar::resizeEvent(QResizeEvent *event){

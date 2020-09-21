@@ -879,7 +879,7 @@ am__qt_libbitcoinqt_a_SOURCES_DIST = qt/bantablemodel.cpp \
 	qt/BitcoinAdult/res/img/ic-radio-liliac-on.svg \
 	qt/BitcoinAdult/res/img/img-empty-staking-off.svg \
 	qt/BitcoinAdult/res/img/ic-arrow-drop-down.svg \
-	qt/BitcoinAdult/res/img/ic-coin-piv.svg \
+	qt/BitcoinAdult/res/img/ic-coin-btad.svg \
 	qt/BitcoinAdult/res/img/ic-receive-off.svg \
 	qt/BitcoinAdult/res/img/img-empty-staking-on.svg \
 	qt/BitcoinAdult/res/img/ic-arrow-drop-up-white.svg \
@@ -3242,7 +3242,7 @@ EXTRA_DIST =
 @ENABLE_QT_TRUE@  qt/BitcoinAdult/res/img/ic-radio-liliac-on.svg \
 @ENABLE_QT_TRUE@  qt/BitcoinAdult/res/img/img-empty-staking-off.svg \
 @ENABLE_QT_TRUE@  qt/BitcoinAdult/res/img/ic-arrow-drop-down.svg \
-@ENABLE_QT_TRUE@  qt/BitcoinAdult/res/img/ic-coin-piv.svg \
+@ENABLE_QT_TRUE@  qt/BitcoinAdult/res/img/ic-coin-btad.svg \
 @ENABLE_QT_TRUE@  qt/BitcoinAdult/res/img/ic-receive-off.svg \
 @ENABLE_QT_TRUE@  qt/BitcoinAdult/res/img/img-empty-staking-on.svg \
 @ENABLE_QT_TRUE@  qt/BitcoinAdult/res/img/ic-arrow-drop-up-white.svg \

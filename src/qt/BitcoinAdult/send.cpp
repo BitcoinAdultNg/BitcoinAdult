@@ -53,6 +53,11 @@ SendWidget::SendWidget(BITCOINADULTGUI* parent) :
     ui->pushRight->setText("zBTAD");
     setCssProperty(ui->pushRight, "btn-check-right");
 
+    ui->pushRight->setVisible(false);
+    ui->pushLeft->setVisible(false);
+    ui->labelSubtitle1->setVisible(false);
+    ui->labelSubtitle2->setVisible(false);
+
     /* Subtitle */
     ui->labelSubtitle1->setText(tr("You can transfer public coins (BTAD) or private coins (zBTAD)"));
     setCssProperty(ui->labelSubtitle1, "text-subtitle");
@@ -118,6 +123,7 @@ SendWidget::SendWidget(BITCOINADULTGUI* parent) :
     setCssProperty(ui->labelAmountRemaining, "text-body1");
 
     // Icon Send
+    
     ui->stackedWidget->addWidget(coinIcon);
     coinIcon->show();
     coinIcon->raise();
@@ -131,7 +137,7 @@ SendWidget::SendWidget(BITCOINADULTGUI* parent) :
     int posX = 0;
     int posY = 20;
     coinIcon->move(posX, posY);
-
+    
     // Entry
     addEntry();
 

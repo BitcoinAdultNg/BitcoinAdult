@@ -694,7 +694,7 @@
                 <item>
                  <widget class="QLabel" name="labelPiv">
                   <property name="text">
-                   <string>BTAD</string>
+                   <string>Staking</string>
                   </property>
                  </widget>
                 </item>
@@ -736,7 +736,7 @@
                 <item>
                  <widget class="QLabel" name="labelZpiv">
                   <property name="text">
-                   <string>zBTAD</string>
+                   <string>MN Rewards</string>
                   </property>
                  </widget>
                 </item>

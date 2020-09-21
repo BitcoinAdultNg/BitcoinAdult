@@ -10,7 +10,6 @@
 #include "qt/BitcoinAdult/mninfodialog.h"
 
 #include "qt/BitcoinAdult/masternodewizarddialog.h"
-
 #include "activemasternode.h"
 #include "clientmodel.h"
 #include "guiutil.h"
@@ -202,7 +201,15 @@ void MasterNodesWidget::startAlias(QString strAlias){
     QString strStatusHtml;
     strStatusHtml += "Alias: " + strAlias + " ";
 
+
     for (CMasternodeConfig::CMasternodeEntry mne : masternodeConfig.getEntries()) {
+        LogPrintf("Alias: %s\r\n", strAlias.toStdString());
+        std::string strHex = mne.getTxHash();
+        LogPrintf("TxHash: %s\r\n", strHex);
+        uint256 result;
+        result.SetHex(strHex);
+        const CWalletTx* wtx = walletModel->getTx(result);
+        LogPrintf("Alias: %s - time: %i\r\n", strAlias.toStdString(),wtx->nTimeReceived); //wtx->nTimeReceived
         if (mne.getAlias() == strAlias.toStdString()) {
             std::string strError;
             CMasternodeBroadcast mnb;
@@ -346,7 +353,7 @@ void MasterNodesWidget::onDeleteMNClicked(){
 
 void MasterNodesWidget::onCreateMNClicked(){
     if(verifyWalletUnlocked()) {
-        if(walletModel->getBalance() <= (COIN * 10000)){
+        if(walletModel->getBalance() <= (COIN * GetMstrNodCollateral(chainActive.Height()))){
             inform(tr("Not enough balance to create a masternode, 25000 BTAD required."));
             return;
         }

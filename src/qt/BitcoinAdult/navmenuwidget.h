@@ -27,7 +27,7 @@ public:
 
 public slots:
     void selectSettings();
-    void onShowHideColdStakingChanged(bool show);
+   void onShowHideColdStakingChanged(bool show);
 
 private slots:
     void onSendClicked();
