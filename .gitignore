@@ -6,3 +6,5 @@ contrib/devtools/split-debug.sh
 contrib/devtools/split-debug.sh
 src/qt/BitcoinAdult/res/img/img-nav-logo-BitcoinAdult_.png
 src/qt/BitcoinAdult/res/img/img-nav-logo_.png
+src/Makefile
+src/config/btad-config.h

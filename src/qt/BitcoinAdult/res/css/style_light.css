@@ -1322,7 +1322,39 @@ QPushButton[cssClass="btn-primary"]:pressed {
     color: #b168b1;
     border-radius: 2px;
 }
+QPushButton[cssClass="btn-copyAfterFee"] {
+    border:  1px solid #663366;
+    background-color:#663366;
+    width: 50px;
+    height: 25px;
+    font-size:16px;
+    padding:2px 2px;
+    color: #FFFFFF;
+    border-radius: 2px;
+}
 
+
+QPushButton[cssClass="btn-copyAfterFee"]:hover {
+    border:  1px solid #663366;
+    background-color:#462146;
+    width: 50px;
+    height: 25px;
+    font-size:16px;
+    padding:2px 2px;
+    color: #FFFFFF;
+    border-radius: 2px;
+}
+
+QPushButton[cssClass="btn-copyAfterFee"]:pressed {
+    border:  1px solid #462146;
+    background-color:#462146;
+    width: 50px;
+    height: 25px;
+    font-size:16px;
+    padding:2px 2px;
+    color: #b168b1;
+    border-radius: 2px;
+}
 
 QPushButton[cssClass="btn-secundary"] {
     border:  1px solid #33663366;

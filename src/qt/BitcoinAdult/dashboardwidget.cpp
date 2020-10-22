@@ -372,15 +372,18 @@ void DashboardWidget::setChartShow(ChartShowType type) {
 const QStringList monthsNames = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
 void DashboardWidget::loadChart(){
-    if (hasStakes) {
+    //if (hasStakes) {
+    if (true) {
         if (!chart) {
             showHideEmptyChart(false, false);
             initChart();
             QDate currentDate = QDate::currentDate();
             monthFilter = currentDate.month();
             yearFilter = currentDate.year();
-            for (int i = 1; i < 13; ++i) ui->comboBoxMonths->addItem(QString(monthsNames[i-1]), QVariant(i));
+            for (int i = 1; i < 13; ++i) 
+                ui->comboBoxMonths->addItem(QString(monthsNames[i-1]), QVariant(i));
             ui->comboBoxMonths->setCurrentIndex(monthFilter - 1);
+            
             connect(ui->comboBoxMonths, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(onChartMonthChanged(const QString&)));
             connect(ui->pushButtonChartArrow, &QPushButton::clicked, [this](){ onChartArrowClicked(true); });
             connect(ui->pushButtonChartRight, &QPushButton::clicked, [this](){ onChartArrowClicked(false); });

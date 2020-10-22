@@ -203,13 +203,13 @@ void MasterNodesWidget::startAlias(QString strAlias){
 
 
     for (CMasternodeConfig::CMasternodeEntry mne : masternodeConfig.getEntries()) {
-        LogPrintf("Alias: %s\r\n", strAlias.toStdString());
+        /*LogPrintf("Alias: %s\r\n", strAlias.toStdString());
         std::string strHex = mne.getTxHash();
         LogPrintf("TxHash: %s\r\n", strHex);
         uint256 result;
         result.SetHex(strHex);
         const CWalletTx* wtx = walletModel->getTx(result);
-        LogPrintf("Alias: %s - time: %i\r\n", strAlias.toStdString(),wtx->nTimeReceived); //wtx->nTimeReceived
+        LogPrintf("Alias: %s - time: %i\r\n", strAlias.toStdString(),wtx->nTimeReceived); //wtx->nTimeReceived*/
         if (mne.getAlias() == strAlias.toStdString()) {
             std::string strError;
             CMasternodeBroadcast mnb;

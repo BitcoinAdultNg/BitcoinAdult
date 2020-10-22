@@ -594,7 +594,7 @@ void SendWidget::onChangeCustomFeeClicked(){
 
 void SendWidget::onCoinControlClicked(){
     if(isPIV){
-        if (walletModel->getBalance() > 0) {
+        if (walletModel->getBalance() >= 0) {
             if (!coinControlDialog) {
                 coinControlDialog = new CoinControlDialog();
                 coinControlDialog->setModel(walletModel);

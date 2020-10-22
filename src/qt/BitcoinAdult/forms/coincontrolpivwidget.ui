@@ -428,7 +428,7 @@
         </item>
         <item>
          <widget class="QWidget" name="layoutAfter" native="true">
-          <layout class="QHBoxLayout" name="horizontalLayout_5_4" stretch="0,1">
+          <layout class="QHBoxLayout" name="horizontalLayout_5_4" stretch="0,1,0">
            <item>
             <widget class="QLabel" name="labelTitleAfter">
              <property name="text">
@@ -440,6 +440,25 @@
             <widget class="QLabel" name="labelValueAfter">
              <property name="text">
               <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnCopyAfterFee">
+             <property name="minimumSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>cp</string>
              </property>
             </widget>
            </item>

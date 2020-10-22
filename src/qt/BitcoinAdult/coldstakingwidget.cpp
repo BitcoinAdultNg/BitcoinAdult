@@ -501,7 +501,7 @@ void ColdStakingWidget::clearAll() {
 
 void ColdStakingWidget::onCoinControlClicked(){
     if(isInDelegation) {
-        if (walletModel->getBalance() > 0) {
+        if (walletModel->getBalance() >= 0) {
             if (!coinControlDialog) {
                 coinControlDialog = new CoinControlDialog();
                 coinControlDialog->setModel(walletModel);
