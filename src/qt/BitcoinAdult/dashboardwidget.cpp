@@ -510,6 +510,10 @@ const QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy() {
     for (int i = 0; i < size; ++i) {
         QModelIndex modelIndex = stakesFilter->index(i, TransactionTableModel::ToAddress);
         qint64 amount = llabs(modelIndex.data(TransactionTableModel::AmountRole).toLongLong());
+        bool confirm = modelIndex.data(TransactionTableModel::ConfirmedRole).toInt();
+        if(!confirm) {
+            amount = 0;
+        }
         QDate date = modelIndex.data(TransactionTableModel::DateRole).toDateTime().date();
         //bool isPiv = modelIndex.data(TransactionTableModel::TypeRole).toInt() != TransactionRecord::StakeZPIV;
         bool isMNReward = modelIndex.data(TransactionTableModel::TypeRole).toInt() == TransactionRecord::MNReward;

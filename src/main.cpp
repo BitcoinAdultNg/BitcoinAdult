@@ -6302,6 +6302,17 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             pfrom->PushVersion();
 
         pfrom->fClient = !(pfrom->nServices & NODE_NETWORK);
+        
+        //Check Wallet Version 1.2.0 reject connection
+        std::string strWalletFrom = pfrom->cleanSubVer;
+        std::size_t found = strWalletFrom.find("1.2.0");
+        if(found != std::string::npos) {
+            LogPrintf("Wallet Version has a bug --> Disconnected. Version -> %s",strWalletFrom);
+            pfrom->fDisconnect = true;
+            return true;
+        } else {
+            LogPrintf("Wallet Version accepted. Version -> %s",strWalletFrom);
+        }
 
         // Potentially mark this peer as a preferred download peer.
         UpdatePreferredDownload(pfrom, State(pfrom->GetId()));

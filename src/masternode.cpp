@@ -489,8 +489,7 @@ bool CMasternodeBroadcast::CheckSignature() const
 {
     std::string strError = "";
     std::string strMessage = (nMessVersion == MessageVersion::MESS_VER_HASH ? GetSignatureHash().GetHex() : GetStrMessage() );
-    LogPrintf("MessageToVerify: %s\n",strMessage);
-	
+
     CHashWriter ss(SER_GETHASH, 0);
     ss << strMessageMagic;
     ss << strMessage;
