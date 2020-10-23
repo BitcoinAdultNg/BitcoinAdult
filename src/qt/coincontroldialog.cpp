@@ -99,15 +99,19 @@ CoinControlDialog::CoinControlDialog(QWidget* parent, bool fMultisigEnabled) : Q
     ui->btnEsc->setText("");
     ui->btnEsc->setProperty("cssClass", "ic-close");
     ui->pushButtonOk->setProperty("cssClass", "btn-primary");
+    ui->btnCopyAfterFee->setProperty("cssClass", "btn-copyAfterFee");
+    ui->btnCopyAfterFee->setVisible(true);
+    ui->btnCopyAfterFee->setText("Copy");
 
     connect(ui->btnEsc, SIGNAL(clicked()), this, SLOT(close()));
-
+    connect(ui->btnCopyAfterFee, SIGNAL(clicked()), this, SLOT(clipboardAfterFee()));
     this->fMultisigEnabled = fMultisigEnabled;
 
     // context menu actions
     QAction* copyAddressAction = new QAction(tr("Copy address"), this);
     QAction* copyLabelAction = new QAction(tr("Copy label"), this);
     QAction* copyAmountAction = new QAction(tr("Copy amount"), this);
+    QAction* copyAfterFeeAction = new QAction(tr("Copy amount after Fee"), this);
     copyTransactionHashAction = new QAction(tr("Copy transaction ID"), this); // we need to enable/disable this
     lockAction = new QAction(tr("Lock unspent"), this);                       // we need to enable/disable this
     unlockAction = new QAction(tr("Unlock unspent"), this);                   // we need to enable/disable this
@@ -118,6 +122,7 @@ CoinControlDialog::CoinControlDialog(QWidget* parent, bool fMultisigEnabled) : Q
     contextMenu->addAction(copyLabelAction);
     contextMenu->addAction(copyAmountAction);
     contextMenu->addAction(copyTransactionHashAction);
+    contextMenu->addAction(copyAfterFeeAction);
     contextMenu->addSeparator();
     contextMenu->addAction(lockAction);
     contextMenu->addAction(unlockAction);
@@ -127,6 +132,7 @@ CoinControlDialog::CoinControlDialog(QWidget* parent, bool fMultisigEnabled) : Q
     connect(copyAddressAction, SIGNAL(triggered()), this, SLOT(copyAddress()));
     connect(copyLabelAction, SIGNAL(triggered()), this, SLOT(copyLabel()));
     connect(copyAmountAction, SIGNAL(triggered()), this, SLOT(copyAmount()));
+    connect(copyAfterFeeAction, SIGNAL(triggered()), this, SLOT(clipboardAfterFee()));
     connect(copyTransactionHashAction, SIGNAL(triggered()), this, SLOT(copyTransactionHash()));
     connect(lockAction, SIGNAL(triggered()), this, SLOT(lockCoin()));
     connect(unlockAction, SIGNAL(triggered()), this, SLOT(unlockCoin()));

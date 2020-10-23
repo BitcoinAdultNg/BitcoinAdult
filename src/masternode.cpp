@@ -124,10 +124,6 @@ std::string CMasternode::GetStrMessage() const
     std::string vchPubKey(pubKeyCollateralAddress.begin(), pubKeyCollateralAddress.end());
     std::string vchPubKey2(pubKeyMasternode.begin(), pubKeyMasternode.end());
     std::string strMessage = addr.ToString() + std::to_string(sigTime) + vchPubKey + vchPubKey2 + std::to_string(protocolVersion);
-    LogPrintf("pubkey1: %s\n",vchPubKey);
-    LogPrintf("pubkey2: %s\n",vchPubKey2);
-    LogPrintf("strMessage: %s\n",strMessage);
-
     return strMessage;
     /*
     return (addr.ToString() +
@@ -493,8 +489,7 @@ bool CMasternodeBroadcast::CheckSignature() const
 {
     std::string strError = "";
     std::string strMessage = (nMessVersion == MessageVersion::MESS_VER_HASH ? GetSignatureHash().GetHex() : GetStrMessage() );
-    LogPrintf("MessageToVerify: %s\n",strMessage);
-	
+
     CHashWriter ss(SER_GETHASH, 0);
     ss << strMessageMagic;
     ss << strMessage;

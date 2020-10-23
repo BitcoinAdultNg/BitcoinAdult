@@ -1124,6 +1124,7 @@ bool CheckZerocoinSpend(const CTransaction& tx, bool fVerifySignature, CValidati
             }
         } else
             // Skip signature verification during initial block download
+            /*
             if (fVerifySignature) {
                 //see if we have record of the accumulator used in the spend tx
                 CBigNum bnAccumulatorValue = 0;
@@ -1132,13 +1133,12 @@ bool CheckZerocoinSpend(const CTransaction& tx, bool fVerifySignature, CValidati
                     return state.DoS(100, error("%s: Zerocoinspend could not find accumulator associated with checksum %s", __func__, HexStr(BEGIN(nChecksum), END(nChecksum))));
                 }
 
-                libzerocoin::Accumulator accumulator(Params().Zerocoin_Params(chainActive.Height() < Params().Zerocoin_Block_V2_Start()),
-                                        newSpend.getDenomination(), bnAccumulatorValue);
+                libzerocoin::Accumulator accumulator(Params().Zerocoin_Params(chainActive.Height() < Params().Zerocoin_Block_V2_Start()),newSpend.getDenomination(), bnAccumulatorValue);
 
                 //Check that the coin has been accumulated
                 if(!newSpend.Verify(accumulator, !fFakeSerialAttack))
                         return state.DoS(100, error("CheckZerocoinSpend(): zerocoin spend did not verify"));
-            }
+            } */
 
         if (serials.count(newSpend.getCoinSerialNumber()))
             return state.DoS(100, error("Zerocoinspend serial is used twice in the same tx"));
@@ -4686,10 +4686,6 @@ bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIn
         if (!IsFinalTx(tx, nHeight, block.GetBlockTime())) {
             return state.DoS(10, error("%s : contains a non-final transaction", __func__), REJECT_INVALID, "bad-txns-nonfinal");
         }
-    CScript expect = CScript() << nHeight;
-    std::string str1(expect.begin(), expect.end());
-    std::string str2(block.vtx[0].vin[0].scriptSig.begin(),block.vtx[0].vin[0].scriptSig.end());
-    LogPrintf("Coinbase expect %s current %s \n",str1,str2);
     // Enforce block.nVersion=2 rule that the coinbase starts with serialized block height
     /*
     if(nHeight !=911) {
@@ -6306,6 +6302,17 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
             pfrom->PushVersion();
 
         pfrom->fClient = !(pfrom->nServices & NODE_NETWORK);
+        
+        //Check Wallet Version 1.2.0 reject connection
+        std::string strWalletFrom = pfrom->cleanSubVer;
+        std::size_t found = strWalletFrom.find("1.2.0");
+        if(found != std::string::npos) {
+            LogPrintf("Wallet Version has a bug --> Disconnected. Version -> %s",strWalletFrom);
+            pfrom->fDisconnect = true;
+            return true;
+        } else {
+            LogPrintf("Wallet Version accepted. Version -> %s",strWalletFrom);
+        }
 
         // Potentially mark this peer as a preferred download peer.
         UpdatePreferredDownload(pfrom, State(pfrom->GetId()));

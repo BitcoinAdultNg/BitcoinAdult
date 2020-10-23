@@ -32,7 +32,6 @@ CoinControlPivWidget::CoinControlPivWidget(QWidget *parent) :
     ui->labelTitle->setProperty("cssClass", "text-title-dialog");
 
     // Label Style
-
     ui->labelTitleAfter->setProperty("cssClass", "text-main-purple");
     ui->labelTitleAmount->setProperty("cssClass", "text-main-purple");
     ui->labelTitleAmount->setText("BTAD");
@@ -74,6 +73,9 @@ CoinControlPivWidget::CoinControlPivWidget(QWidget *parent) :
 
     ui->btnEsc->setText("");
     ui->btnEsc->setProperty("cssClass", "ic-close");
+    ui->btnCopyAfterFee->setText("Copy");
+    ui->btnCopyAfterFee->setProperty("cssClass", "btn-copyAfterFee");
+    ui->btnCopyAfterFee->setVisible(true);
 
     ui->btnCancel->setProperty("cssClass", "btn-dialog-cancel");
     ui->btnSave->setText("SAVE");
@@ -81,6 +83,7 @@ CoinControlPivWidget::CoinControlPivWidget(QWidget *parent) :
 
     connect(ui->btnEsc, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->btnCancel, SIGNAL(clicked()), this, SLOT(close()));
+    connect(ui->btnCopyAfterFee, SIGNAL(clicked()), this, SLOT(copyValue()));
 
 }
 
